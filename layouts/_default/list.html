@@ -1,5 +1,13 @@
 {{ define "main" -}}
 <h1 class="title">{{ .Title }}</h1>
+
+<!-- Allow for a pre-amble -->
+{{ with .Site.GetPage (printf "/%s" (lower .Title)) }}
+<div class="post">
+	{{ .Content }}
+</div>
+{{ end }}
+
 <ul class="entries">
     {{ range .Pages.GroupByDate "2006" }}
         <h3 style="text-align: center;">{{ .Key }}</h3>
